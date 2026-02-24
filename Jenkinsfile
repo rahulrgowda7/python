@@ -3,9 +3,9 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
+        stage('Checkout Code') {
             steps {
-                echo "Repository already checked out by Jenkins"
+                checkout scm
             }
         }
 
