@@ -5,16 +5,16 @@ pipeline {
 
         stage('Clone') {
             steps {
-                echo "Cloning repository"
-                checkout scm
+                echo "Repository already checked out by Jenkins"
             }
         }
 
         stage('Setup Python') {
             steps {
-                sh '''
-                python3 -m venv venv
-                . venv/bin/activate
+                bat '''
+                python --version
+                python -m venv venv
+                call venv\\Scripts\\activate
                 pip install -r requirements.txt
                 '''
             }
@@ -22,8 +22,8 @@ pipeline {
 
         stage('Run Script') {
             steps {
-                sh '''
-                . venv/bin/activate
+                bat '''
+                call venv\\Scripts\\activate
                 python app.py
                 '''
             }
